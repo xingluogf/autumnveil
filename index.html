@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小沈秋游戏工作室</title>
+<meta name="description" content="小沈秋游戏工作室，独立游戏开发团队，专注原创故事与像素美学。首个项目开发中，敬请期待。">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  /* ===== 设计 token ===== */
+  :root{
+    --bg:#0d1526;
+    --bg-2:#111c33;
+    --card:#16233d;
+    --card-2:#1a2946;
+    --line:rgba(244,241,232,.10);
+    --ink:#f4f1e8;
+    --ink-2:#b9c2d4;
+    --ink-3:#7f8ba6;
+    --amber:#e8a33d;
+    --amber-2:#f4c87a;
+    --amber-dim:#8a6426;
+    --radius:14px;
+    --font-serif:"Noto Serif SC","Songti SC","SimSun",serif;
+    --font-sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-sans);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .section{padding:96px 0}
+  .section-title{
+    font-family:var(--font-serif);
+    font-weight:900;
+    font-size:clamp(1.7rem,3.4vw,2.4rem);
+    letter-spacing:.02em;
+  }
+  .section-sub{color:var(--ink-2);margin-top:10px;max-width:640px;font-size:15px}
+
+  /* ===== 顶栏 ===== */
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:50;
+    transition:background .3s ease,box-shadow .3s ease,backdrop-filter .3s ease;
+  }
+  header.scrolled{
+    background:rgba(13,21,38,.82);
+    backdrop-filter:blur(12px);
+    box-shadow:0 1px 0 var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;padding:10px 0;font-family:var(--font-serif);font-weight:900;font-size:18px;letter-spacing:.04em}
+  .brand svg{flex:none}
+  .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+  .nav-links a{
+    color:var(--ink-2);font-size:14.5px;position:relative;padding:6px 2px;transition:color .2s;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--amber);transition:width .25s ease;
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--ink)}
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+  .nav-cta{
+    border:1px solid var(--amber);color:var(--amber);background:transparent;
+    padding:10px 20px;min-height:44px;display:inline-flex;align-items:center;
+    border-radius:999px;font-size:14px;transition:all .25s;
+  }
+  .nav-cta:hover{background:var(--amber);color:#1a1408}
+  .nav-burger{display:none;background:none;border:none;color:var(--ink);padding:10px}
+
+  @media (max-width:840px){
+    .nav-links{
+      position:fixed;top:66px;right:0;bottom:0;width:min(300px,78vw);
+      flex-direction:column;align-items:flex-start;gap:8px;
+      background:rgba(13,21,38,.97);backdrop-filter:blur(14px);
+      padding:28px 28px;border-left:1px solid var(--line);
+      transform:translateX(105%);transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateX(0)}
+    .nav-links a{font-size:16px;padding:10px 0;width:100%}
+    .nav-burger{display:block}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;min-height:100svh;
+    display:flex;align-items:center;
+    background:var(--bg);
+  }
+  .hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background:url("assets/hero.png") no-repeat right center/cover;
+  }
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(13,21,38,.97) 0%,rgba(13,21,38,.82) 34%,rgba(13,21,38,.18) 62%,rgba(13,21,38,.32) 100%);
+  }
+  .hero-inner{position:relative;z-index:1;padding:120px 24px 90px;max-width:660px}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line);border-radius:999px;padding:6px 14px;
+    font-size:13px;color:var(--ink-2);background:rgba(17,28,51,.55);
+  }
+  .hero-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+  .hero h1{
+    font-family:var(--font-serif);font-weight:900;
+    font-size:clamp(2.5rem,6.4vw,4.5rem);
+    line-height:1.14;letter-spacing:.04em;margin:22px 0 18px;
+  }
+  .hero h1 .hl{
+    color:var(--amber);
+    background:linear-gradient(120deg,var(--amber-2),var(--amber));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero-lead{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--ink);font-family:var(--font-serif);font-weight:700}
+  .hero p.sub{color:var(--ink-2);margin-top:12px;max-width:520px;font-size:15px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 26px;border-radius:999px;font-size:15px;font-weight:700;
+    border:1px solid transparent;transition:all .25s ease;
+  }
+  .btn svg{flex:none}
+  .btn-primary{background:var(--amber);color:#1a1408}
+  .btn-primary:hover{background:var(--amber-2);transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:26px;margin-top:48px;color:var(--ink-2);font-size:13.5px}
+  .hero-meta b{display:block;color:var(--ink);font-size:18px;font-family:var(--font-serif)}
+  .hero-meta span{opacity:.85}
+
+  /* ===== 星空装饰 ===== */
+  .stars{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .stars i{
+    position:absolute;width:2px;height:2px;border-radius:50%;background:#cfd8ea;
+    animation:twinkle var(--d,3s) ease-in-out infinite;opacity:0;
+  }
+  @keyframes twinkle{0%,100%{opacity:0}50%{opacity:.9}}
+
+  @media (max-width:840px){
+    .section{padding:72px 0}
+    .hero-bg{background-position:70% center}
+    .hero-bg::after{background:linear-gradient(180deg,rgba(13,21,38,.55) 0%,rgba(13,21,38,.92) 70%,var(--bg) 100%)}
+    .hero-inner{max-width:none;padding-top:120px}
+  }
+
+  /* ===== 关于 ===== */
+  .about-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:56px;align-items:start;margin-top:48px}
+  .about-aside p{color:var(--ink-2);font-size:15px}
+  .about-aside .mark{
+    display:inline-block;font-family:var(--font-serif);font-weight:900;font-size:15px;color:var(--amber);
+    border:1px solid var(--amber-dim);padding:4px 12px;border-radius:999px;margin-bottom:20px;
+  }
+  .feat-list{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .feat{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;transition:transform .25s ease,border-color .25s ease;
+  }
+  .feat:hover{transform:translateY(-4px);border-color:var(--amber-dim)}
+  .feat svg{color:var(--amber);margin-bottom:14px}
+  .feat h3{font-size:16.5px;font-weight:700;margin-bottom:8px}
+  .feat p{font-size:14px;color:var(--ink-2)}
+
+  /* ===== 在研游戏 ===== */
+  .games-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+  .games-note{font-size:13.5px;color:var(--ink-3)}
+  .games-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .gcard{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease;
+  }
+  .gcard:hover{transform:translateY(-4px);border-color:var(--amber-dim)}
+  .gcard .thumb{position:relative;aspect-ratio:3/2;overflow:hidden}
+  .gcard .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .gcard:hover .thumb img{transform:scale(1.04)}
+  .gcard .tag{
+    position:absolute;top:14px;left:14px;z-index:2;
+    background:rgba(13,21,38,.82);backdrop-filter:blur(6px);
+    color:var(--amber-2);font-size:12.5px;padding:5px 12px;border-radius:999px;border:1px solid var(--amber-dim);
+  }
+  .gcard .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .gcard h3{font-family:var(--font-serif);font-size:19px;font-weight:900}
+  .gcard .en{font-size:12px;color:var(--ink-3);letter-spacing:.14em}
+  .gcard p{font-size:14px;color:var(--ink-2)}
+  .gcard .foot{margin-top:auto;padding-top:6px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .link-more{
+    display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--amber);
+    border:1px solid var(--amber-dim);border-radius:999px;padding:9px 18px;min-height:44px;transition:all .25s;
+  }
+  .link-more:hover{background:var(--amber);color:#1a1408}
+  .gcard.ghost{
+    background:transparent;border:1.5px dashed var(--line);justify-content:center;align-items:center;text-align:center;
+    min-height:280px;
+  }
+  .gcard.ghost:hover{border-color:var(--amber-dim);transform:none}
+  .gcard.ghost .big{font-family:var(--font-serif);font-size:44px;font-weight:900;color:var(--ink-3);display:flex;justify-content:center}
+  .gcard.ghost h3{font-size:17px;font-weight:700;color:var(--ink-2);margin-top:6px}
+  .gcard.ghost p{font-size:13px;color:var(--ink-3);max-width:220px;margin:8px auto 0}
+
+  @media (max-width:840px){
+    .about-grid{grid-template-columns:1fr;gap:36px}
+    .feat-list{grid-template-columns:1fr}
+    .games-grid{grid-template-columns:1fr}
+  }
+
+  /* ===== 历程时间轴 ===== */
+  .timeline{margin-top:56px;--tl-time:110px;--tl-axis:44px;position:relative}
+  .timeline::before{
+    content:"";position:absolute;top:10px;bottom:10px;
+    left:calc(var(--tl-time) + var(--tl-axis)/2 - 1px);
+    width:2px;background:var(--line);
+  }
+  .tl-row{
+    display:grid;grid-template-columns:var(--tl-time) var(--tl-axis) 1fr;
+    align-items:start;padding-bottom:38px;
+  }
+  .tl-row:last-child{padding-bottom:0}
+  .tl-time{text-align:right;padding-right:18px;padding-top:6px;font-size:14px;color:var(--ink-3);font-weight:500}
+  .tl-axis{display:flex;justify-content:center}
+  .tl-dot{
+    width:14px;height:14px;border-radius:50%;background:var(--bg);
+    border:3px solid var(--amber);justify-self:center;align-self:start;margin-top:4px;z-index:1;
+  }
+  .tl-row.now .tl-dot{background:var(--amber);box-shadow:0 0 0 6px rgba(232,163,61,.16)}
+  .tl-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px}
+  .tl-card h3{font-family:var(--font-serif);font-size:17px;font-weight:900;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tl-state{font-family:var(--font-sans);font-size:11.5px;font-weight:500;color:var(--amber-2);border:1px solid var(--amber-dim);border-radius:999px;padding:2px 10px}
+  .tl-card p{font-size:14px;color:var(--ink-2);margin-top:6px}
+  .tl-row.soon .tl-dot{border-color:var(--ink-3)}
+  .tl-row.soon .tl-state{color:var(--ink-3);border-color:var(--line)}
+
+  @media (max-width:640px){
+    .timeline{--tl-time:64px;--tl-axis:28px}
+    .tl-time{font-size:12.5px;padding-right:10px}
+  }
+
+  /* ===== 联系 ===== */
+  .contact-card{
+    margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:44px 46px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;
+  }
+  .contact-card h3{font-family:var(--font-serif);font-size:21px;font-weight:900;margin-bottom:12px}
+  .contact-card p{color:var(--ink-2);font-size:14.5px}
+  .contact-mail{
+    display:inline-flex;align-items:center;gap:10px;margin-top:22px;
+    border:1px solid var(--amber-dim);border-radius:999px;padding:12px 24px;color:var(--amber);
+    font-size:15px;transition:all .25s;
+  }
+  .contact-mail:hover{background:var(--amber);color:#1a1408}
+  .contact-mail small{opacity:.7;font-size:12px}
+  .contact-channels{display:flex;flex-direction:column;gap:12px;justify-content:center}
+  .channel{
+    display:flex;align-items:center;gap:12px;background:var(--card-2);border:1px solid var(--line);
+    border-radius:12px;padding:14px 18px;font-size:14px;transition:border-color .2s;
+  }
+  .channel svg{color:var(--amber);flex:none}
+  .channel .st{margin-left:auto;font-size:12px;color:var(--ink-3)}
+
+  /* ===== 页脚 ===== */
+  footer{border-top:1px solid var(--line);padding:34px 0;margin-top:30px}
+  .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;color:var(--ink-3);font-size:13px}
+  .foot .brand{font-size:15px;color:var(--ink-2)}
+
+  /* ===== Toast ===== */
+  .toast{
+    position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);
+    background:var(--card-2);border:1px solid var(--amber-dim);color:var(--ink);
+    padding:12px 22px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;
+    transition:all .3s ease;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:720px){
+    .contact-card{grid-template-columns:1fr;padding:32px 26px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 顶栏 ===== -->
+<header id="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="返回顶部">
+      <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#16233d" stroke="#e8a33d" stroke-width="1.2"/><path d="M7.5 9v6M4.5 12h6" stroke="#e8a33d" stroke-width="1.8" stroke-linecap="round"/><circle cx="16.2" cy="10.5" r="1.15" fill="#f4c87a"/><circle cx="18.6" cy="13.5" r="1.15" fill="#f4c87a"/></svg>
+      小沈秋游戏工作室
+    </a>
+    <nav aria-label="主导航">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">工作室</a></li>
+        <li><a href="#games">在研游戏</a></li>
+        <li><a href="#journey">历程</a></li>
+        <li><a href="#contact">联系</a></li>
+        <li><a href="#" class="nav-cta" data-toast="简历与作品集投稿通道正在筹备中">加入我们</a></li>
+      </ul>
+    </nav>
+    <button class="nav-burger" id="burger" aria-label="打开菜单" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <span class="hero-tag"><span class="dot"></span>独立游戏开发中 · 敬请期待</span>
+    <h1>小沈秋<span class="hl">游戏工作室</span></h1>
+    <p class="hero-lead">在深蓝的夜里，把故事做成游戏。</p>
+    <p class="sub">一间小规模的独立游戏团队：相信好游戏从好故事开始，专注原创世界观、像素美学与值得反复回味的玩法。第一款作品正在打磨中。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#games">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        看看在研游戏
+      </a>
+      <a class="btn btn-ghost" href="#about">了解工作室</a>
+    </div>
+    <div class="hero-meta">
+      <div><b>1</b><span>款游戏开发中</span></div>
+      <div><b>100%</b><span>原创内容</span></div>
+      <div><b>深夜</b><span>常亮灯的工作室</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 关于 ===== -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-aside">
+        <span class="mark">ABOUT · 关于</span>
+        <h2 class="section-title">一间深夜还亮着灯的小工作室</h2>
+        <p style="margin-top:20px">小沈秋游戏工作室是一支小规模的独立游戏团队。我们不追热点、不堆系统，只做自己真正相信、也会反复玩上很多遍的东西。</p>
+        <p style="margin-top:12px">目前团队正专注于第一款作品的打磨——从世界观设定到玩法原型，一切都从零生长，慢慢长成它该有的样子。</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 3v18M12 8h4M12 12h4"/></svg>
+          <h3>原创故事</h3>
+          <p>每一款游戏都从一段故事出发，先想清楚要讲什么，再动手敲代码。</p>
+        </div>
+        <div class="feat">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+          <h3>像素美学</h3>
+          <p>偏好像素与手绘质感，用克制的画面，表达充沛的情绪。</p>
+        </div>
+        <div class="feat">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 7v10l8 5 8-5V7z"/><path d="M12 22V12"/><path d="M4 7l8 5 8-5"/></svg>
+          <h3>独立精神</h3>
+          <p>小而专注：一个人也当一支队伍，慢一点也没关系。</p>
+        </div>
+        <div class="feat">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/></svg>
+          <h3>长期主义</h3>
+          <p>作品未完成不急着上线，宁可慢，也要让它值得被记住。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 在研游戏 ===== -->
+<section class="section" id="games" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="games-head">
+      <div>
+        <h2 class="section-title">在研游戏</h2>
+        <p class="section-sub">游戏尚在开发中，子网站将在临近上线时开放。以下是当前的概念预览。</p>
+      </div>
+      <span class="games-note">项目名称已公布，其余内容以最终发布为准</span>
+    </div>
+    <div class="games-grid">
+
+      <article class="gcard">
+        <div class="thumb">
+          <span class="tag">开发中</span>
+          <img src="assets/game-dawn.png" alt="项目一概念图：黄昏海岸的灯塔与村庄" loading="lazy">
+        </div>
+        <div class="body">
+          <h3>墨染长街</h3>
+          <span class="en">MO RAN CHANG JIE</span>
+          <p>水墨晕染的长街，灯火次第亮起，一段关于寻回与告别的人间故事。核心玩法与剧情仍在打磨。</p>
+          <div class="foot">
+            <a class="link-more" href="#" data-toast="该项目仍在开发中，子网站尚未开放">
+              查看详情
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="gcard ghost">
+        <div>
+          <div class="big">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+          </div>
+          <h3>子网站建设中</h3>
+          <p>墨染长街的专属页面，将在临近发布时随子网站一同上线。</p>
+        </div>
+      </article>
+
+      <article class="gcard ghost">
+        <div>
+          <div class="big">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>子网站建设中</h3>
+          <p>更多游戏与互动内容，将在临近发布时陆续上线。</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 历程时间轴 ===== -->
+<section class="section" id="journey">
+  <div class="wrap">
+    <h2 class="section-title">工作室历程</h2>
+    <p class="section-sub">一间工作室从点亮灯开始，到现在正在走的路。</p>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-time">起点</div>
+        <div class="tl-axis"><span class="tl-dot"></span></div>
+        <div class="tl-card">
+          <h3>工作室成立 <span class="tl-state">已发生</span></h3>
+          <p>写下第一行关于「想做什么样的游戏」的笔记，灯从此没有在深夜熄灭过。</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-time">立项</div>
+        <div class="tl-axis"><span class="tl-dot"></span></div>
+        <div class="tl-card">
+          <h3>首个项目立项 <span class="tl-state">已发生</span></h3>
+          <p>第一个项目通过立项，世界观、玩法原型与美术方向同步开工。</p>
+        </div>
+      </div>
+      <div class="tl-row now">
+        <div class="tl-time">现在</div>
+        <div class="tl-axis"><span class="tl-dot"></span></div>
+        <div class="tl-card">
+          <h3>核心开发中 <span class="tl-state">当前</span></h3>
+          <p>核心玩法迭代中，美术与音乐逐步就位。偶尔会放出开发幕后。</p>
+        </div>
+      </div>
+      <div class="tl-row soon">
+        <div class="tl-time">未来</div>
+        <div class="tl-axis"><span class="tl-dot"></span></div>
+        <div class="tl-card">
+          <h3>公开测试 · 子站上线 <span class="tl-state">规划中</span></h3>
+          <p>游戏临近完成时，将开放公开测试，并上线每个作品的专属子网站。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 联系 ===== -->
+<section class="section" id="contact" style="background:var(--bg-2)">
+  <div class="wrap">
+    <h2 class="section-title">联系我们</h2>
+    <p class="section-sub">合作、建议，或只是想聊聊游戏，都欢迎来信。</p>
+    <div class="contact-card">
+      <div>
+        <h3>写一封信给我们</h3>
+        <p>合作、建议，或只是想聊聊游戏，欢迎写信到下方邮箱。子网站开放时，这里也会公布更多互动渠道。</p>
+        <a class="contact-mail" href="mailto:3841286465@qq.com">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 7L22 7"/></svg>
+          3841286465@qq.com
+        </a>
+      </div>
+      <div class="contact-channels">
+        <div class="channel">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v4M17 10v4M4 6v12M20 6v12"/></svg>
+          微博 <span class="st">筹备中</span>
+        </div>
+        <div class="channel">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="4"/><path d="M10 6l-1 14M14 6l1 14M6 11h4M6 15h4"/></svg>
+          Bilibili <span class="st">筹备中</span>
+        </div>
+        <div class="channel">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4.4 0-8 2.5-8 5.6 0 2 1.2 3.7 3 4.7-.1.8-.4 1.9-1.1 2.8 0 0 2.5-.3 4-1.7.7.1 1.4.2 2.1.2 4.4 0 8-2.5 8-5.6S16.4 3 12 3z"/><circle cx="8.7" cy="9" r=".9"/><circle cx="15.3" cy="9" r=".9"/></svg>
+          抖音 <span class="st">筹备中</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer>
+  <div class="wrap foot">
+    <span class="brand">小沈秋游戏工作室</span>
+    <span>© 2026 小沈秋游戏工作室 · 保留所有权利</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function(){
+    var toastEl = document.getElementById('toast');
+    var toastTimer = null;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+    }
+
+    // 占位按钮 → toast（不是僵尸按钮）
+    document.querySelectorAll('[data-toast]').forEach(function(el){
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        toast(el.getAttribute('data-toast'));
+      });
+    });
+
+    // 汉堡菜单
+    var burger = document.getElementById('burger');
+    var navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.addEventListener('click', function(e){
+      if (e.target.tagName === 'A') navLinks.classList.remove('open');
+    });
+
+    // 滚动：顶栏背景 + 导航高亮
+    var header = document.getElementById('topbar');
+    var sections = ['about','games','journey','contact'].map(function(id){ return document.getElementById(id); });
+    var linkMap = {};
+    document.querySelectorAll('.nav-links a').forEach(function(a){
+      var id = a.getAttribute('href');
+      if (id && id.charAt(0) === '#') linkMap[id.slice(1)] = a;
+    });
+
+    function onScroll(){
+      header.classList.toggle('scrolled', window.scrollY > 30);
+      var pos = window.scrollY + window.innerHeight * 0.34;
+      var current = null;
+      sections.forEach(function(sec){
+        if (sec && sec.offsetTop <= pos) current = sec.id;
+      });
+      Object.keys(linkMap).forEach(function(id){
+        linkMap[id].classList.toggle('active', id === current);
+      });
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    // 星空装饰（纯装饰，无交互）
+    var stars = document.getElementById('stars');
+    var frag = document.createDocumentFragment();
+    var count = 44;
+    for (var i = 0; i < count; i++){
+      var s = document.createElement('i');
+      s.style.left = (Math.random()*100).toFixed(2) + '%';
+      s.style.top = (Math.random()*100).toFixed(2) + '%';
+      s.style.setProperty('--d', (2.2 + Math.random()*3.4).toFixed(2) + 's');
+      s.style.animationDelay = (Math.random()*4).toFixed(2) + 's';
+      frag.appendChild(s);
+    }
+    stars.appendChild(frag);
+  })();
+</script>
+</body>
+</html>
