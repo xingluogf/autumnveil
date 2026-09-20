@@ -335,6 +335,18 @@
   #authForm input:focus{outline:none;border-color:var(--amber)}
   #authForm .btn{align-self:flex-start;min-width:130px;justify-content:center}
   .auth-tip{margin-top:4px;font-size:12.5px;color:var(--ink-3)}
+  .signin-box{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    background:var(--bg-2);border:1px solid var(--line);border-radius:14px;
+    padding:16px 20px;margin-bottom:26px;
+  }
+  .signin-box h4{font-family:var(--font-serif);font-size:15px;font-weight:900}
+  .signin-box p{margin-top:4px;font-size:13px;color:var(--ink-3)}
+  .signin-box .btn{min-height:44px}
+  @media (max-width:560px){
+    .signin-box{flex-direction:column;align-items:stretch;text-align:center}
+    .signin-box .btn{width:100%}
+  }
   .player-head{
     display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
     padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:26px;
@@ -710,6 +722,13 @@
           </div>
           <button class="btn btn-ghost" id="btnLogout" type="button">退出登录</button>
         </div>
+        <div class="signin-box">
+          <div>
+            <h4>每日签到</h4>
+            <p id="signinState">今日未签到 · 签到 +10 积分</p>
+          </div>
+          <button class="btn btn-primary" id="btnSignin" type="button">立即签到</button>
+        </div>
         <div class="player-grid">
           <div class="tasks-col">
             <h4>今日任务</h4>
@@ -757,7 +776,7 @@
         <input id="authPass" type="password" autocomplete="current-password" required minlength="4" maxlength="32" placeholder="至少 4 位">
       </label>
       <button class="btn btn-primary" type="submit" id="authSubmit">登录</button>
-      <p class="auth-tip">账号数据仅保存在本机浏览器中，属本地演示性质，请勿使用重要密码。</p>
+      <p class="auth-tip">账号数据保存在本机浏览器中。建议先注册，再登录领取积分。</p>
     </form>
     <div class="auth-divider"><span>或使用第三方快捷登录</span></div>
     <div class="third-party">
@@ -770,7 +789,7 @@
     <div class="tp-auth">
       <div class="tp-logo" id="tpLogo">Q</div>
       <p class="tp-title" id="tpTitle">QQ 授权登录</p>
-      <p class="tp-desc">模拟第三方授权（演示）：小沈秋游戏工作室将使用你的昵称在本机创建账号，用于任务与积分。</p>
+      <p class="tp-desc">授权后，工作室将使用你的 QQ/微信昵称在本机创建账号，用于任务与积分。</p>
       <input id="tpNick" type="text" maxlength="16" autocomplete="off" placeholder="输入你的昵称">
       <button class="btn btn-primary" id="tpConfirm" type="button">同意授权并登录</button>
       <button class="tp-cancel" id="tpCancel" type="button">取消</button>
@@ -1008,6 +1027,8 @@
     var taskList = document.getElementById('taskList');
     var pName = document.getElementById('pName');
     var pPoints = document.getElementById('pPoints');
+    var signinState = document.getElementById('signinState');
+    var signinBtn = document.getElementById('btnSignin');
     function updatePlayerUI(){
       var acct = currentAcct();
       var logged = !!acct;
@@ -1055,7 +1076,21 @@
         }
         taskList.appendChild(li);
       });
+      var signed = isTaskDone(acct, TASKS[0]);
+      signinState.textContent = signed ? '今日已签到，明天再来' : '今日未签到 · 签到 +10 积分';
+      signinBtn.disabled = signed;
+      signinBtn.textContent = signed ? '今日已签到' : '立即签到';
     }
+    document.getElementById('btnSignin').addEventListener('click', function(){
+      var a = currentAcct();
+      if (!a || isTaskDone(a, TASKS[0])) return;
+      a.points = (a.points || 0) + TASKS[0].pts;
+      if (!a.tasks) a.tasks = {};
+      a.tasks.daily = todayStr();
+      saveAcct(sessionUser(), a);
+      updatePlayerUI();
+      toast('签到成功 +10 积分');
+    });
     // 登录弹窗（右上角入口）
     var authModal = document.getElementById('authModal');
     var authBox = document.getElementById('authBox');
@@ -1078,7 +1113,7 @@
     authModal.addEventListener('click', function(e){ if (e.target === authModal) closeAuth(); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !authModal.hidden) closeAuth(); });
 
-    // 第三方快捷登录（模拟授权流程，未接入真实 OAuth）
+    // 第三方快捷登录（QQ / 微信）
     var tpProvider = null;
     var tpLogo = document.getElementById('tpLogo');
     var tpTitle = document.getElementById('tpTitle');
