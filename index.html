@@ -311,6 +311,65 @@
     .contact-card{grid-template-columns:1fr;padding:32px 26px}
   }
 
+  /* ===== 玩家中心 ===== */
+  .player-card{
+    margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:40px 44px;
+  }
+  .auth-panel{max-width:420px}
+  .auth-tabs{display:flex;gap:8px;margin-bottom:26px}
+  .auth-tab{
+    background:none;border:1px solid var(--line);color:var(--ink-2);
+    padding:9px 24px;min-height:44px;border-radius:999px;font-size:14px;
+    transition:all .3s var(--ease-out);
+  }
+  .auth-tab.active{background:var(--amber);border-color:var(--amber);color:#1a1408;font-weight:700}
+  #authForm{display:flex;flex-direction:column;gap:16px}
+  #authForm label{display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--ink-2)}
+  #authForm input{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:10px;color:var(--ink);
+    padding:12px 16px;font-size:16px;font-family:inherit;
+    transition:border-color .25s var(--ease-out);
+  }
+  #authForm input:focus{outline:none;border-color:var(--amber)}
+  #authForm .btn{align-self:flex-start;min-width:130px;justify-content:center}
+  .auth-tip{margin-top:4px;font-size:12.5px;color:var(--ink-3)}
+  .player-head{
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+    padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:26px;
+  }
+  .player-head h3{font-family:var(--font-serif);font-size:20px;font-weight:900}
+  .p-since{margin-top:6px;font-size:14px;color:var(--ink-2)}
+  .p-since b{color:var(--amber-2);font-size:22px;font-family:var(--font-serif)}
+  .player-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:36px}
+  .tasks-col h4,.redeem-col h4{font-size:15px;color:var(--ink-2);margin-bottom:14px;letter-spacing:.06em}
+  .task-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .task{
+    display:flex;align-items:center;gap:12px;background:var(--card-2);
+    border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+  }
+  .task-info{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+  .task-name{font-size:14.5px;font-weight:700}
+  .task-desc{font-size:12.5px;color:var(--ink-3)}
+  .task-pts{color:var(--amber-2);font-size:13px;font-weight:700;flex:none}
+  .task-btn{
+    flex:none;background:var(--amber);border:none;color:#1a1408;font-size:13px;font-weight:700;
+    padding:8px 18px;min-height:44px;border-radius:999px;transition:all .3s var(--ease-out);
+  }
+  .task-btn:hover{background:var(--amber-2)}
+  .task-btn:disabled{background:var(--bg-2);color:var(--ink-3);border:1px solid var(--line);cursor:default}
+  .redeem-box{background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .redeem-name{font-family:var(--font-serif);font-size:18px;font-weight:900}
+  .redeem-note{margin-top:8px;font-size:13.5px;color:var(--ink-2)}
+  .redeem-note b{color:var(--amber-2)}
+  .redeem-box .btn{margin-top:18px}
+  .redeem-tip{margin-top:12px;font-size:12.5px;color:var(--ink-3)}
+
+  @media (max-width:720px){
+    .player-card{padding:28px 22px}
+    .player-grid{grid-template-columns:1fr;gap:28px}
+  }
+
   /* ===== 动态入场 ===== */
   @keyframes heroIn{
     from{opacity:0;transform:translateY(28px) scale(.985);filter:blur(8px)}
@@ -359,6 +418,7 @@
         <li><a href="#about">工作室</a></li>
         <li><a href="#games">在研游戏</a></li>
         <li><a href="#journey">历程</a></li>
+        <li><a href="#player">玩家中心</a></li>
         <li><a href="#contact">联系</a></li>
         <li><a href="mailto:3841286465@qq.com" class="nav-cta">加入我们</a></li>
       </ul>
@@ -561,6 +621,59 @@
   </div>
 </section>
 
+<!-- ===== 玩家中心 ===== -->
+<section class="section" id="player">
+  <div class="wrap">
+    <h2 class="section-title">玩家中心</h2>
+    <p class="section-sub">登录后做任务攒积分，积分可兑换游戏兑换码（兑换码暂未上架，敬请期待）。</p>
+    <div class="player-card reveal" id="playerCard">
+
+      <div class="auth-panel" id="authPanel">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tabLogin" type="button">登录</button>
+          <button class="auth-tab" id="tabReg" type="button">注册</button>
+        </div>
+        <form id="authForm">
+          <label>用户名
+            <input id="authUser" type="text" autocomplete="username" required minlength="2" maxlength="16" placeholder="2-16 位字符">
+          </label>
+          <label>密码
+            <input id="authPass" type="password" autocomplete="current-password" required minlength="4" maxlength="32" placeholder="至少 4 位">
+          </label>
+          <button class="btn btn-primary" type="submit" id="authSubmit">登录</button>
+          <p class="auth-tip">账号数据仅保存在本机浏览器中，属本地演示性质，请勿使用重要密码。</p>
+        </form>
+      </div>
+
+      <div class="player-panel" id="playerPanel" hidden>
+        <div class="player-head">
+          <div>
+            <h3>欢迎回来，<span id="pName">玩家</span></h3>
+            <p class="p-since">累计积分 <b id="pPoints">0</b></p>
+          </div>
+          <button class="btn btn-ghost" id="btnLogout" type="button">退出登录</button>
+        </div>
+        <div class="player-grid">
+          <div class="tasks-col">
+            <h4>今日任务</h4>
+            <ul class="task-list" id="taskList"></ul>
+          </div>
+          <div class="redeem-col">
+            <h4>积分兑换</h4>
+            <div class="redeem-box">
+              <p class="redeem-name">游戏兑换码</p>
+              <p class="redeem-note">每 <b>30</b> 积分可兑换 1 个 · 当前库存：<b id="redeemStock">0</b> 个</p>
+              <button class="btn btn-primary" id="btnRedeem" type="button">兑换</button>
+              <p class="redeem-tip" id="redeemTip">兑换码暂未上架，敬请期待。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ===== 页脚 ===== -->
 <footer>
   <div class="wrap foot">
@@ -568,7 +681,7 @@
     <span>© 2026 小沈秋游戏工作室 · 保留所有权利</span>
   </div>
   <div class="wrap uptime">
-    <span>本站已运行 <b id="uptime">0 天 00 时 00 分 00 秒</b> · 永远运行，不会停</span>
+    <span>本站已运行 <b id="uptime">0 天 00 时 00 分 00 秒</b> · 自工作室成立起持续运转，永远不停</span>
   </div>
 </footer>
 
@@ -606,7 +719,7 @@
 
     // 滚动：顶栏背景 + 导航高亮 + 顶部进度条 + Hero 视差（rAF 合并成帧，丝滑）
     var header = document.getElementById('topbar');
-    var sections = ['about','games','journey','contact'].map(function(id){ return document.getElementById(id); });
+    var sections = ['about','games','journey','contact','player'].map(function(id){ return document.getElementById(id); });
     var linkMap = {};
     document.querySelectorAll('.nav-links a').forEach(function(a){
       var id = a.getAttribute('href');
@@ -731,16 +844,11 @@
     }
 
     // 成立时间与本站运行时间
-    // 成立起点：2026-09-18 00:00 +08:00
-    // 运行时间：从本站首次开始运行那一刻起算，并用 localStorage 持久化——
-    // 玩家关闭界面再打开，计时继续累计，不会从零开始、也不会停止
-    var START_KEY = 'shenqiu_uptime_start';
-    var startTime = 0;
-    try { startTime = parseInt(localStorage.getItem(START_KEY), 10); } catch(e) {}
-    if (!startTime || isNaN(startTime)) {
-      startTime = Date.now();
-      try { localStorage.setItem(START_KEY, String(startTime)); } catch(e) {}
-    }
+    // 成立起点：2026-09-18 00:00 +08:00（成立天数按自然日累计，18 号为第 1 天）
+    // 运行时间：从工作室正式成立那一刻（2026-09-18 22:00 +08:00）起算——
+    // 起点固定，即使关闭界面再打开，计时也继续累计，不会从零开始、也不会停止
+    var RUNTIME_START = new Date('2026-09-18T22:00:00+08:00').getTime();
+    var startTime = RUNTIME_START;
     var sinceStart = new Date('2026-09-18T00:00:00+08:00').getTime();
     function pad2(n){ return n < 10 ? '0' + n : n; }
     function tickTime(){
@@ -761,6 +869,142 @@
     }
     tickTime();
     setInterval(tickTime, 1000);
+
+    // ===== 玩家中心：登录 · 任务 · 积分 · 兑换 =====
+    var TASKS = [
+      {id:'daily',  name:'每日签到',         desc:'今天也要加油哦',                    pts:10, daily:true},
+      {id:'about',  name:'了解工作室',       desc:'读完「关于」里的故事',              pts:5,  daily:false},
+      {id:'games',  name:'查看在研游戏',     desc:'看看墨染长街的最新概念',            pts:5,  daily:false},
+      {id:'journey',name:'浏览工作室历程',   desc:'从起点一路看到未来',                pts:5,  daily:false},
+      {id:'social', name:'关注一个社交渠道', desc:'微博 / B站 / 抖音，任选其一',      pts:5,  daily:false},
+      {id:'mail',   name:'给工作室写一封信', desc:'发一封邮件到公开邮箱',              pts:10, daily:false}
+    ];
+    function hashPass(s){
+      var h = 5381;
+      for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+      return 'h' + (h >>> 0).toString(16);
+    }
+    function acctKey(u){ return 'shenqiu_player_' + u; }
+    function loadAcct(u){
+      try { return JSON.parse(localStorage.getItem(acctKey(u))); } catch(e) { return null; }
+    }
+    function saveAcct(u, a){
+      try { localStorage.setItem(acctKey(u), JSON.stringify(a)); } catch(e) {}
+    }
+    function todayStr(){
+      var d = new Date();
+      return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    }
+    var SESSION_KEY = 'shenqiu_session';
+    function sessionUser(){
+      try { return sessionStorage.getItem(SESSION_KEY); } catch(e) { return null; }
+    }
+    function currentAcct(){
+      var u = sessionUser();
+      if (!u) return null;
+      return loadAcct(u);
+    }
+    function isTaskDone(acct, t){
+      if (!acct || !acct.tasks || !acct.tasks[t.id]) return false;
+      return t.daily ? (acct.tasks[t.id] === todayStr()) : true;
+    }
+    var authPanel = document.getElementById('authPanel');
+    var playerPanel = document.getElementById('playerPanel');
+    var taskList = document.getElementById('taskList');
+    var pName = document.getElementById('pName');
+    var pPoints = document.getElementById('pPoints');
+    function updatePlayerUI(){
+      var acct = currentAcct();
+      var logged = !!acct;
+      authPanel.hidden = logged;
+      playerPanel.hidden = !logged;
+      if (logged){
+        pName.textContent = sessionUser();
+        pPoints.textContent = acct.points || 0;
+        renderTasks();
+      }
+    }
+    function renderTasks(){
+      var acct = currentAcct();
+      if (!acct) return;
+      taskList.innerHTML = '';
+      TASKS.forEach(function(t){
+        var done = isTaskDone(acct, t);
+        var li = document.createElement('li');
+        li.className = 'task';
+        li.innerHTML =
+          '<div class="task-info"><span class="task-name"></span><span class="task-desc"></span></div>' +
+          '<span class="task-pts"></span>' +
+          '<button class="task-btn" type="button"></button>';
+        li.querySelector('.task-name').textContent = t.name;
+        li.querySelector('.task-desc').textContent = t.desc;
+        li.querySelector('.task-pts').textContent = '+' + t.pts;
+        var btn = li.querySelector('.task-btn');
+        btn.textContent = done ? (t.daily ? '今日已签' : '已完成') : '领取';
+        btn.disabled = done;
+        if (!done){
+          btn.addEventListener('click', function(){
+            var a = currentAcct();
+            if (!a || isTaskDone(a, t)) return;
+            a.points = (a.points || 0) + t.pts;
+            if (!a.tasks) a.tasks = {};
+            a.tasks[t.id] = t.daily ? todayStr() : true;
+            saveAcct(sessionUser(), a);
+            updatePlayerUI();
+            toast('任务完成 +' + t.pts + ' 积分');
+          });
+        }
+        taskList.appendChild(li);
+      });
+    }
+    // 登录 / 注册
+    var authMode = 'login';
+    var tabLogin = document.getElementById('tabLogin');
+    var tabReg = document.getElementById('tabReg');
+    var authSubmit = document.getElementById('authSubmit');
+    var authUserInput = document.getElementById('authUser');
+    var authPassInput = document.getElementById('authPass');
+    function setAuthMode(m){
+      authMode = m;
+      tabLogin.classList.toggle('active', m === 'login');
+      tabReg.classList.toggle('active', m === 'reg');
+      authSubmit.textContent = m === 'login' ? '登录' : '注册并登录';
+      authPassInput.autocomplete = m === 'login' ? 'current-password' : 'new-password';
+    }
+    tabLogin.addEventListener('click', function(){ setAuthMode('login'); });
+    tabReg.addEventListener('click', function(){ setAuthMode('reg'); });
+    document.getElementById('authForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      var user = authUserInput.value.trim();
+      var pass = authPassInput.value;
+      if (user.length < 2 || user.length > 16){ toast('用户名需为 2-16 位字符'); return; }
+      if (pass.length < 4 || pass.length > 32){ toast('密码需为 4-32 位'); return; }
+      var existing = loadAcct(user);
+      if (authMode === 'reg'){
+        if (existing){ toast('该用户名已注册，请直接登录'); return; }
+        saveAcct(user, {pass:hashPass(pass), points:0, tasks:{}, redeemed:0});
+        toast('注册成功，欢迎加入');
+      } else {
+        if (!existing || existing.pass !== hashPass(pass)){ toast('用户名或密码不正确'); return; }
+        toast('登录成功');
+      }
+      try { sessionStorage.setItem(SESSION_KEY, user); } catch(e) {}
+      authPassInput.value = '';
+      updatePlayerUI();
+    });
+    document.getElementById('btnLogout').addEventListener('click', function(){
+      try { sessionStorage.removeItem(SESSION_KEY); } catch(e) {}
+      toast('已退出登录');
+      updatePlayerUI();
+    });
+    // 兑换（暂时没有兑换码）
+    document.getElementById('btnRedeem').addEventListener('click', function(){
+      var acct = currentAcct();
+      if (!acct) return;
+      if ((acct.points || 0) < 30){ toast('积分不足，满 30 分可兑换'); return; }
+      toast('兑换码暂未上架，敬请期待');
+    });
+    updatePlayerUI();
   })();
 </script>
 </body>
