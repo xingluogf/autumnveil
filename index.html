@@ -30,6 +30,7 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none !important}
   html{scroll-behavior:smooth}
   body{
     background:var(--bg);
@@ -85,7 +86,7 @@
   .nav-links a:hover::after,.nav-links a.active::after{width:100%}
   .nav-cta{
     border:1px solid var(--amber);color:var(--amber);background:transparent;
-    padding:10px 20px;min-height:44px;display:inline-flex;align-items:center;
+    padding:10px 20px;min-height:44px;min-width:44px;justify-content:center;display:inline-flex;align-items:center;
     border-radius:999px;font-size:14px;transition:all .3s var(--ease-out);
   }
   .nav-cta:hover{background:var(--amber);color:#1a1408}
@@ -370,6 +371,70 @@
     .player-grid{grid-template-columns:1fr;gap:28px}
   }
 
+  /* ===== 登录弹窗与第三方快捷登录 ===== */
+  .nav-user{
+    color:var(--amber);font-size:14px;border:1px solid var(--amber-dim);border-radius:999px;
+    padding:10px 16px;min-height:44px;display:inline-flex;align-items:center;
+    transition:all .3s var(--ease-out);
+  }
+  .nav-user:hover{background:rgba(232,163,61,.12);border-color:var(--amber)}
+  .modal-mask{
+    position:fixed;inset:0;z-index:120;background:rgba(6,10,20,.74);backdrop-filter:blur(6px);
+    display:flex;align-items:center;justify-content:center;padding:20px;
+  }
+  .modal{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:34px 36px;width:min(420px,100%);position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    animation:modalIn .35s var(--ease-out) both;
+  }
+  @keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .modal-close{
+    position:absolute;top:12px;right:12px;background:none;border:none;color:var(--ink-3);
+    font-size:24px;line-height:1;width:44px;height:44px;cursor:pointer;border-radius:50%;
+  }
+  .modal-close:hover{color:var(--ink)}
+  .auth-divider{display:flex;align-items:center;gap:12px;margin:24px 0 18px;color:var(--ink-3);font-size:12.5px}
+  .auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--line)}
+  .third-party{display:flex;flex-direction:column;gap:12px}
+  .tp-btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;border-radius:12px;
+    padding:13px 18px;min-height:48px;font-size:15px;font-weight:700;border:1px solid transparent;
+    transition:all .3s var(--ease-out);
+  }
+  .tp-qq{background:#12b7f5;color:#fff}
+  .tp-qq:hover{background:#3fc7ff}
+  .tp-wx{background:#07c160;color:#fff}
+  .tp-wx:hover{background:#1fd97a}
+  .tp-auth{text-align:center}
+  .tp-logo{
+    width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-serif);font-weight:900;font-size:24px;margin:0 auto 16px;color:#fff;
+  }
+  .tp-logo-qq{background:#12b7f5}
+  .tp-logo-wx{background:#07c160}
+  .tp-title{font-family:var(--font-serif);font-size:18px;font-weight:900}
+  .tp-desc{margin-top:8px;font-size:13px;color:var(--ink-3);text-align:left}
+  .tp-auth input{
+    margin-top:20px;width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;
+    color:var(--ink);padding:12px 16px;font-size:16px;font-family:inherit;text-align:center;
+  }
+  .tp-auth input:focus{outline:none;border-color:var(--amber)}
+  .tp-auth .btn{margin-top:16px;width:100%;justify-content:center}
+  .tp-cancel{
+    margin-top:10px;width:100%;background:none;border:none;color:var(--ink-3);
+    font-size:13.5px;min-height:44px;
+  }
+  .auth-placeholder{max-width:440px}
+  .auth-placeholder svg{color:var(--amber)}
+  .auth-placeholder h3{font-family:var(--font-serif);font-size:19px;font-weight:900;margin-top:14px}
+  .auth-placeholder p{margin-top:8px;font-size:14px;color:var(--ink-2)}
+  .auth-placeholder .btn{margin-top:20px}
+
+  @media (max-width:720px){
+    .modal{padding:28px 22px}
+  }
+
   /* ===== 动态入场 ===== */
   @keyframes heroIn{
     from{opacity:0;transform:translateY(28px) scale(.985);filter:blur(8px)}
@@ -421,6 +486,8 @@
         <li><a href="#player">玩家中心</a></li>
         <li><a href="#contact">联系</a></li>
         <li><a href="mailto:3841286465@qq.com" class="nav-cta">加入我们</a></li>
+        <li><a href="#" class="nav-cta" id="navAuthBtn">登录</a></li>
+        <li><a href="#player" class="nav-user" id="navUserBtn" hidden>玩家 · 0 分</a></li>
       </ul>
     </nav>
     <button class="nav-burger" id="burger" aria-label="打开菜单" aria-expanded="false">
@@ -628,21 +695,11 @@
     <p class="section-sub">登录后做任务攒积分，积分可兑换游戏兑换码（兑换码暂未上架，敬请期待）。</p>
     <div class="player-card reveal" id="playerCard">
 
-      <div class="auth-panel" id="authPanel">
-        <div class="auth-tabs">
-          <button class="auth-tab active" id="tabLogin" type="button">登录</button>
-          <button class="auth-tab" id="tabReg" type="button">注册</button>
-        </div>
-        <form id="authForm">
-          <label>用户名
-            <input id="authUser" type="text" autocomplete="username" required minlength="2" maxlength="16" placeholder="2-16 位字符">
-          </label>
-          <label>密码
-            <input id="authPass" type="password" autocomplete="current-password" required minlength="4" maxlength="32" placeholder="至少 4 位">
-          </label>
-          <button class="btn btn-primary" type="submit" id="authSubmit">登录</button>
-          <p class="auth-tip">账号数据仅保存在本机浏览器中，属本地演示性质，请勿使用重要密码。</p>
-        </form>
+      <div class="auth-placeholder" id="authPlaceholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h3>登录后开始做任务</h3>
+        <p>做任务攒积分，未来可兑换游戏兑换码。支持账号密码，或使用 QQ、微信快捷登录。</p>
+        <button class="btn btn-primary" id="btnOpenAuth" type="button">登录 / 注册</button>
       </div>
 
       <div class="player-panel" id="playerPanel" hidden>
@@ -684,6 +741,42 @@
     <span>本站已运行 <b id="uptime">0 天 00 时 00 分 00 秒</b> · 自工作室成立起持续运转，永远不停</span>
   </div>
 </footer>
+
+<div class="modal-mask" id="authModal" hidden>
+  <div class="modal" id="authBox" role="dialog" aria-modal="true" aria-label="登录或注册">
+    <button class="modal-close" id="authClose" type="button" aria-label="关闭">×</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin" type="button">登录</button>
+      <button class="auth-tab" id="tabReg" type="button">注册</button>
+    </div>
+    <form id="authForm">
+      <label>用户名
+        <input id="authUser" type="text" autocomplete="username" required minlength="2" maxlength="16" placeholder="2-16 位字符">
+      </label>
+      <label>密码
+        <input id="authPass" type="password" autocomplete="current-password" required minlength="4" maxlength="32" placeholder="至少 4 位">
+      </label>
+      <button class="btn btn-primary" type="submit" id="authSubmit">登录</button>
+      <p class="auth-tip">账号数据仅保存在本机浏览器中，属本地演示性质，请勿使用重要密码。</p>
+    </form>
+    <div class="auth-divider"><span>或使用第三方快捷登录</span></div>
+    <div class="third-party">
+      <button class="tp-btn tp-qq" id="btnQQ" type="button">QQ 登录 / 注册</button>
+      <button class="tp-btn tp-wx" id="btnWx" type="button">微信 登录 / 注册</button>
+    </div>
+  </div>
+  <div class="modal" id="tpPanel" hidden role="dialog" aria-modal="true" aria-label="第三方授权登录">
+    <button class="modal-close" id="tpClose" type="button" aria-label="返回">×</button>
+    <div class="tp-auth">
+      <div class="tp-logo" id="tpLogo">Q</div>
+      <p class="tp-title" id="tpTitle">QQ 授权登录</p>
+      <p class="tp-desc">模拟第三方授权（演示）：小沈秋游戏工作室将使用你的昵称在本机创建账号，用于任务与积分。</p>
+      <input id="tpNick" type="text" maxlength="16" autocomplete="off" placeholder="输入你的昵称">
+      <button class="btn btn-primary" id="tpConfirm" type="button">同意授权并登录</button>
+      <button class="tp-cancel" id="tpCancel" type="button">取消</button>
+    </div>
+  </div>
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -908,19 +1001,25 @@
       if (!acct || !acct.tasks || !acct.tasks[t.id]) return false;
       return t.daily ? (acct.tasks[t.id] === todayStr()) : true;
     }
-    var authPanel = document.getElementById('authPanel');
+    var authPlaceholder = document.getElementById('authPlaceholder');
     var playerPanel = document.getElementById('playerPanel');
+    var navAuthBtn = document.getElementById('navAuthBtn');
+    var navUserBtn = document.getElementById('navUserBtn');
     var taskList = document.getElementById('taskList');
     var pName = document.getElementById('pName');
     var pPoints = document.getElementById('pPoints');
     function updatePlayerUI(){
       var acct = currentAcct();
       var logged = !!acct;
-      authPanel.hidden = logged;
+      navAuthBtn.hidden = logged;
+      navUserBtn.hidden = !logged;
+      authPlaceholder.hidden = logged;
       playerPanel.hidden = !logged;
       if (logged){
-        pName.textContent = sessionUser();
+        var uname = sessionUser();
+        pName.textContent = uname;
         pPoints.textContent = acct.points || 0;
+        navUserBtn.textContent = uname + ' · ' + (acct.points || 0) + ' 分';
         renderTasks();
       }
     }
@@ -957,6 +1056,59 @@
         taskList.appendChild(li);
       });
     }
+    // 登录弹窗（右上角入口）
+    var authModal = document.getElementById('authModal');
+    var authBox = document.getElementById('authBox');
+    var tpPanel = document.getElementById('tpPanel');
+    function openAuth(){
+      authModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAuth(){
+      authModal.hidden = true;
+      tpPanel.hidden = true;
+      authBox.hidden = false;
+      document.body.style.overflow = '';
+    }
+    navAuthBtn.addEventListener('click', function(e){ e.preventDefault(); openAuth(); });
+    document.getElementById('btnOpenAuth').addEventListener('click', openAuth);
+    document.getElementById('authClose').addEventListener('click', closeAuth);
+    document.getElementById('tpClose').addEventListener('click', function(){ tpPanel.hidden = true; authBox.hidden = false; });
+    document.getElementById('tpCancel').addEventListener('click', function(){ tpPanel.hidden = true; authBox.hidden = false; });
+    authModal.addEventListener('click', function(e){ if (e.target === authModal) closeAuth(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !authModal.hidden) closeAuth(); });
+
+    // 第三方快捷登录（模拟授权流程，未接入真实 OAuth）
+    var tpProvider = null;
+    var tpLogo = document.getElementById('tpLogo');
+    var tpTitle = document.getElementById('tpTitle');
+    var tpNick = document.getElementById('tpNick');
+    function openTp(p){
+      tpProvider = p;
+      authBox.hidden = true;
+      tpPanel.hidden = false;
+      var isQq = p === 'qq';
+      tpLogo.textContent = isQq ? 'Q' : '微';
+      tpLogo.className = 'tp-logo ' + (isQq ? 'tp-logo-qq' : 'tp-logo-wx');
+      tpTitle.textContent = isQq ? 'QQ 授权登录' : '微信授权登录';
+      tpNick.value = (isQq ? 'QQ玩家' : '微信玩家') + Math.floor(1000 + Math.random() * 9000);
+    }
+    document.getElementById('btnQQ').addEventListener('click', function(){ openTp('qq'); });
+    document.getElementById('btnWx').addEventListener('click', function(){ openTp('wx'); });
+    document.getElementById('tpConfirm').addEventListener('click', function(){
+      var nick = tpNick.value.trim();
+      if (!nick){ toast('请填写昵称'); return; }
+      var user = tpProvider + '_' + nick;
+      var existing = loadAcct(user);
+      if (!existing){
+        saveAcct(user, {pass:'', points:0, tasks:{}, redeemed:0, via:tpProvider});
+      }
+      try { sessionStorage.setItem(SESSION_KEY, user); } catch(e) {}
+      toast('已通过' + (tpProvider === 'qq' ? 'QQ' : '微信') + '登录，欢迎加入');
+      closeAuth();
+      updatePlayerUI();
+    });
+
     // 登录 / 注册
     var authMode = 'login';
     var tabLogin = document.getElementById('tabLogin');
@@ -990,6 +1142,7 @@
       }
       try { sessionStorage.setItem(SESSION_KEY, user); } catch(e) {}
       authPassInput.value = '';
+      closeAuth();
       updatePlayerUI();
     });
     document.getElementById('btnLogout').addEventListener('click', function(){
