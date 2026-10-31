@@ -86,12 +86,75 @@
             color: #adbac7;
             margin-bottom: 12px;
         }
-        .tip-box {
-            margin-top: 24px;
-            padding: 16px;
-            background: #1c2129;
-            border-radius: 8px;
-            color: #8b949e;
+        .card a{
+            color:#58a6ff;
+            text-decoration:none;
+        }
+        .card a:hover{
+            text-decoration:underline;
+        }
+        .about-item{
+            margin:20px 0;
+            padding-left:14px;
+            border-left:2px solid #303843;
+        }
+        .about-item h4{
+            color:#58a6ff;
+            font-size:18px;
+            margin-bottom:6px;
+        }
+        /* 联系我们区块样式，匹配截图深色卡片布局 */
+        .contact-wrap {
+            background: #0f1c32;
+            border-radius: 16px;
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            border: 1px solid #1c2d48;
+        }
+        .contact-left h3 {
+            font-size: 28px;
+            margin-bottom:16px;
+            color:#fff;
+        }
+        .contact-left p.desc {
+            color:#b0c4de;
+            margin-bottom:30px;
+        }
+        .email-box {
+            display:inline-block;
+            border:1px solid #d49848;
+            border-radius:999px;
+            padding:12px 24px;
+            color:#ffc478;
+            font-size:18px;
+        }
+        .email-box a {
+            color:#ffc478;
+            text-decoration:none;
+        }
+        .social-item {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:#14243d;
+            border-radius:10px;
+            padding:14px 20px;
+            margin-bottom:14px;
+            border:1px solid #233859;
+        }
+        .social-name {
+            color:#e0e8f5;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+        .status-wait {
+            color:#8897b0;
+        }
+        .status-online {
+            color:#71e9a1;
         }
         footer {
             text-align: center;
@@ -112,6 +175,9 @@
             .hero h1 {
                 font-size:32px;
             }
+            .contact-wrap {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -121,17 +187,15 @@
         <div class="nav-links">
             <a href="#">首页</a>
             <a href="#" class="soon">作品｜未开发</a>
-            <a href="#" class="soon">关于｜未开发</a>
-            <a href="#" class="soon">联系｜未开发</a>
+            <a href="#about">关于</a>
+            <a href="#contact">联系我们</a>
         </div>
     </nav>
-
     <div class="container">
         <div class="hero">
             <h1>小沈秋游戏工作室</h1>
             <p>专注独立游戏、引擎定制、创意内容开发，自研沈秋引擎，打造原创游戏作品。</p>
         </div>
-
         <div class="section">
             <h2>工作室介绍</h2>
             <div class="card">
@@ -141,17 +205,87 @@
             </div>
         </div>
 
-        <div class="section">
-            <h2>说明</h2>
+        <div class="section" id="about">
+            <h2>ABOUT · 关于</h2>
             <div class="card">
-                <p>本网站处于早期搭建阶段，导航栏【作品、关于、联系】页面均未开发，后续逐步更新。</p>
-                <p>如果你想联系工作室，可以等待联系页面上线。</p>
+                <p>成立于 2026 年 9 月 18 日</p>
+                <p>成立第 <span id="dayCount"></span> 天</p>
+                <p>一间深夜还亮着灯的小工作室</p>
+                <br>
+                <p>小沈秋游戏工作室是一支小规模的独立游戏团队。我们不追热点、不堆系统，只做自己真正相信、也会反复玩上很多遍的东西。</p>
+
+                <div class="about-item">
+                    <h4>原创故事</h4>
+                    <p>每一款游戏都从一段故事出发，先想清楚要讲什么，再动手敲代码。</p>
+                </div>
+                <div class="about-item">
+                    <h4>像素美学</h4>
+                    <p>偏好像素与手绘质感，用克制的画面，表达充沛的情绪。</p>
+                </div>
+                <div class="about-item">
+                    <h4>独立精神</h4>
+                    <p>小而专注：一个人也当一支队伍，慢一点也没关系。</p>
+                </div>
+                <div class="about-item">
+                    <h4>长期主义</h4>
+                    <p>作品未完成不急着上线，宁可慢，也要让它值得被记住。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新增：截图里的联系我们板块 -->
+        <div class="section" id="contact">
+            <h2>联系我们</h2>
+            <p style="color:#b0c4de;margin-bottom:24px;">合作、建议，或只是想聊聊游戏，都欢迎来信。</p>
+            <div class="contact-wrap">
+                <div class="contact-left">
+                    <h3>写一封信给我们</h3>
+                    <p class="desc">合作、建议，或只是想聊聊游戏，欢迎写信到下方邮箱。子网站开放时，这里也会公布更多互动渠道。</p>
+                    <div class="email-box">
+                        <a href="mailto:3841286465@qq.com">✉ 3841286465@qq.com</a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>┃┃</span> 微博
+                        </div>
+                        <span class="status-wait">筹备中</span>
+                    </div>
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>📀</span> Bilibili
+                        </div>
+                        <span class="status-wait">筹备中</span>
+                    </div>
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>💬</span> 抖音
+                        </div>
+                        <span class="status-wait">筹备中</span>
+                    </div>
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>▶</span> 快手
+                        </div>
+                        <span class="status-online">官方 · 已上线</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <footer>
         © 2026 小沈秋游戏工作室 | 站点建设中
     </footer>
+
+    <script>
+        // JS自动计算成立天数：成立日期 2026-09-18
+        const startDate = new Date('2026-09-18');
+        const now = new Date();
+        // 计算间隔天数
+        const diffTime = Math.abs(now - startDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('dayCount').innerText = diffDays;
+    </script>
 </body>
 </html>
