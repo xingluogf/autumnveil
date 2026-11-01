@@ -1,103 +1,291 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小沈秋游戏工作室</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#111;color:#eee;font-family:system-ui,Segoe UI,sans-serif;line-height:1.7}
-.container{max-width:900px;margin:0 auto;padding:40px 24px}
-header{text-align:center;margin-bottom:60px}
-header h1{font-size:2.2rem;margin-bottom:12px}
-header p{color:#aaa;font-size:1.05rem}
-section{margin-bottom:50px}
-h2{font-size:1.5rem;margin-bottom:20px;border-left:4px solid #4488ff;padding-left:12px}
-.about-desc{margin-bottom:32px;color:#ccc}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
-.card{background:#1a1a1a;padding:22px;border-radius:10px;border:1px solid #2a2a2a}
-.card h3{margin-bottom:8px;color:#fff}
-.card p{color:#bbb;font-size:0.95rem}
-.contact a{color:#66aaff;text-decoration:none}
-.contact a:hover{text-decoration:underline}
-footer{margin-top:80px;padding-top:30px;border-top:1px solid #222;color:#888;font-size:0.9rem}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小沈秋游戏工作室</title>
+    <meta name="description" content="小沈秋游戏工作室 - 独立游戏开发工作室">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #0f1117;
+            color: #e6edf3;
+            line-height: 1.7;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            border-bottom: 1px solid #222730;
+            position: sticky;
+            top: 0;
+            background: #0f1117;
+            z-index: 99;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+        .nav-links a {
+            color: #adbac7;
+            text-decoration: none;
+            margin-left: 32px;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #58a6ff;
+        }
+        .soon {
+            color: #6e7681 !important;
+            cursor: not-allowed;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .hero h1 {
+            font-size: 44px;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #adbac7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 60px;
+        }
+        .section h2 {
+            font-size: 26px;
+            color: #58a6ff;
+            margin-bottom: 16px;
+            border-left: 4px solid #58a6ff;
+            padding-left: 12px;
+        }
+        .card {
+            background: #161b22;
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid #222730;
+        }
+        .card p {
+            color: #adbac7;
+            margin-bottom: 12px;
+        }
+        .card a{
+            color:#58a6ff;
+            text-decoration:none;
+        }
+        .card a:hover{
+            text-decoration:underline;
+        }
+        .about-item{
+            margin:20px 0;
+            padding-left:14px;
+            border-left:2px solid #303843;
+        }
+        .about-item h4{
+            color:#58a6ff;
+            font-size:18px;
+            margin-bottom:6px;
+        }
+        /* 联系我们区块样式，匹配截图深色卡片布局 */
+        .contact-wrap {
+            background: #0f1c32;
+            border-radius: 16px;
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            border: 1px solid #1c2d48;
+        }
+        .contact-left h3 {
+            font-size: 28px;
+            margin-bottom:16px;
+            color:#fff;
+        }
+        .contact-left p.desc {
+            color:#b0c4de;
+            margin-bottom:30px;
+        }
+        .email-box {
+            display:inline-block;
+            border:1px solid #d49848;
+            border-radius:999px;
+            padding:12px 24px;
+            color:#ffc478;
+            font-size:18px;
+        }
+        .email-box a {
+            color:#ffc478;
+            text-decoration:none;
+        }
+        .social-item {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:#14243d;
+            border-radius:10px;
+            padding:14px 20px;
+            margin-bottom:14px;
+            border:1px solid #233859;
+        }
+        .social-name {
+            color:#e0e8f5;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+        .status-wait {
+            color:#8897b0;
+        }
+        .status-online {
+            color:#71e9a1;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222730;
+            color: #6e7681;
+            font-size: 14px;
+        }
+        @media (max-width:720px) {
+            nav {
+                padding:16px 20px;
+                flex-direction: column;
+                gap:12px;
+            }
+            .nav-links a {
+                margin:0 12px;
+            }
+            .hero h1 {
+                font-size:32px;
+            }
+            .contact-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<header>
-<h1>小沈秋游戏工作室</h1>
-<p>一间深夜还亮着灯的小工作室</p>
-</header>
+    <nav>
+        <div class="logo">小沈秋游戏工作室</div>
+        <div class="nav-links">
+            <a href="#">首页</a>
+            <a href="#" class="soon">作品｜未开发</a>
+            <a href="#about">关于</a>
+            <a href="#contact">联系我们</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="hero">
+            <h1>小沈秋游戏工作室</h1>
+            <p>专注独立游戏、引擎定制、创意内容开发，自研沈秋引擎，打造原创游戏作品。</p>
+        </div>
+        <div class="section">
+            <h2>工作室介绍</h2>
+            <div class="card">
+                <p>小沈秋游戏工作室，是一个独立游戏开发团队，主攻 Unity / Godot 引擎开发，正在自研【沈秋引擎】。</p>
+                <p>我们专注原创游戏项目开发，同时进行脚本、地图、网站、工具开发。</p>
+                <p>工作室持续探索独立游戏的创意玩法，稳步推进项目迭代。</p>
+            </div>
+        </div>
 
-<section>
-<h2>ABOUT · 关于</h2>
-<div class="about-desc">
-<p>成立于 2026 年 9 月 18 日｜<span id="dayCount"></span></p>
-<br>
-<p>小沈秋游戏工作室是一支小规模的独立游戏团队。我们不追热点、不堆系统，只做自己真正相信、也会反复玩上很多遍的东西。</p>
-</div>
-<div class="grid">
-<div class="card">
-<h3>原创故事</h3>
-<p>每一款游戏都从一段故事出发，先想清楚要讲什么，再动手敲代码。</p>
-</div>
-<div class="card">
-<h3>像素美学</h3>
-<p>偏好像素与手绘质感，用克制的画面，表达充沛的情绪。</p>
-</div>
-<div class="card">
-<h3>独立精神</h3>
-<p>小而专注：一个人也当一支队伍，慢一点也没关系。</p>
-</div>
-<div class="card">
-<h3>长期主义</h3>
-<p>作品未完成不急着上线，宁可慢，也要让它值得被记住。</p>
-</div>
-</div>
-</section>
+        <div class="section" id="about">
+            <h2>ABOUT · 关于</h2>
+            <div class="card">
+                <p>成立于 2026 年 9 月 18 日</p>
+                <p>成立第 <span id="dayCount"></span> 天</p>
+                <p>一间深夜还亮着灯的小工作室</p>
+                <br>
+                <p>小沈秋游戏工作室是一支小规模的独立游戏团队。我们不追热点、不堆系统，只做自己真正相信、也会反复玩上很多遍的东西。</p>
 
-<section class="contact">
-<h2>联系我们</h2>
-<p>邮箱：<a href="mailto:3841286465@qq.com">3841286465@qq.com</a></p>
-<p>QQ：<a href="tencent://message/?uin=3841286465">3841286465</a></p>
-<p>快手：<a href="https://www.kuaishou.com/profile/3xcumix8t9ud6ck" target="_blank">沈秋游戏工作室</a></p>
-</section>
+                <div class="about-item">
+                    <h4>原创故事</h4>
+                    <p>每一款游戏都从一段故事出发，先想清楚要讲什么，再动手敲代码。</p>
+                </div>
+                <div class="about-item">
+                    <h4>像素美学</h4>
+                    <p>偏好像素与手绘质感，用克制的画面，表达充沛的情绪。</p>
+                </div>
+                <div class="about-item">
+                    <h4>独立精神</h4>
+                    <p>小而专注：一个人也当一支队伍，慢一点也没关系。</p>
+                </div>
+                <div class="about-item">
+                    <h4>长期主义</h4>
+                    <p>作品未完成不急着上线，宁可慢，也要让它值得被记住。</p>
+                </div>
+            </div>
+        </div>
 
-<footer>
-<p>© 2026 小沈秋游戏工作室 · 保留所有权利</p>
-<p id="runTime"></p>
-<p>本站浏览 <span id="pv">0</span> 次 · 感谢每一位来访的玩家</p>
-</footer>
-</div>
+        <!-- 新增：截图里的联系我们板块 -->
+        <div class="section" id="contact">
+            <h2>联系我们</h2>
+            <p style="color:#b0c4de;margin-bottom:24px;">合作、建议，或只是想聊聊游戏，都欢迎来信。</p>
+            <div class="contact-wrap">
+                <div class="contact-left">
+                    <h3>写一封信给我们</h3>
+                    <p class="desc">合作、建议，或只是想聊聊游戏，欢迎写信到下方邮箱。子网站开放时，这里也会公布更多互动渠道。</p>
+                    <div class="email-box">
+                        <a href="mailto:3841286465@qq.com">✉ 3841286465@qq.com</a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>┃┃</span> 微博
+                        </div>
+                        <span class="status-wait">筹备中</span>
+                    </div>
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>📀</span> Bilibili
+                        </div>
+                        <span class="status-wait">筹备中</span>
+                    </div>
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>💬</span> 抖音
+                        </div>
+                        <span class="status-wait">筹备中</span>
+                    </div>
+                    <div class="social-item">
+                        <div class="social-name">
+                            <span>▶</span> 快手
+                        </div>
+                        <span class="status-online">官方 · 已上线</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        © 2026 小沈秋游戏工作室 | 站点建设中
+    </footer>
 
-<script>
-const workerUrl = "https://shenqiu-counter.3976515531.workers.dev";
-// 工作室成立时间
-const start = new Date("2026-09-18T00:00:00");
-function updateTime(){
-  const now = new Date();
-  const diff = now - start;
-  const day = Math.floor(diff / (1000*60*60*24));
-  const hour = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-  const min = Math.floor((diff % (1000*60*60)) / (1000*60));
-  const sec = Math.floor((diff % (1000*60)) / 1000);
-  document.getElementById("dayCount").innerText = `成立第 ${day} 天`;
-  document.getElementById("runTime").innerText = `本站已运行 ${day} 天 ${hour} 时 ${min} 分 ${sec} 秒 · 自工作室成立起持续运转，永远不停`;
-}
-updateTime();
-setInterval(updateTime,1000);
-
-async function getPV(){
-  try{
-    const res = await fetch(workerUrl + "?t=" + Date.now(), { cache: "no-store" });
-    const data = await res.json();
-    document.getElementById("pv").innerText = data.pv;
-  }catch(err){
-    console.error("计数器加载失败",err);
-  }
-}
-getPV();
-</script>
+    <script>
+        // JS自动计算成立天数：成立日期 2026-09-18
+        const startDate = new Date('2026-09-18');
+        const now = new Date();
+        // 计算间隔天数
+        const diffTime = Math.abs(now - startDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('dayCount').innerText = diffDays;
+    </script>
 </body>
 </html>
