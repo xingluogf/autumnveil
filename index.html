@@ -103,7 +103,6 @@
             font-size:18px;
             margin-bottom:6px;
         }
-        /* 联系我们区块样式，匹配截图深色卡片布局 */
         .contact-wrap {
             background: #0f1c32;
             border-radius: 16px;
@@ -144,6 +143,13 @@
             margin-bottom:14px;
             border:1px solid #233859;
         }
+        .social-item a{
+            color:#e0e8f5;
+            text-decoration:none;
+        }
+        .social-item a:hover{
+            color:#58a6ff;
+        }
         .social-name {
             color:#e0e8f5;
             display:flex;
@@ -162,6 +168,14 @@
             border-top: 1px solid #222730;
             color: #6e7681;
             font-size: 14px;
+        }
+        .footer-run-info{
+            margin-top:8px;
+            color:#8b949e;
+        }
+        .footer-view-count{
+            margin-top:4px;
+            color:#8b949e;
         }
         @media (max-width:720px) {
             nav {
@@ -183,7 +197,7 @@
 </head>
 <body>
     <nav>
-        <div class="logo">小沈秋游戏工作室</div>
+        <div class="logo">沈秋游戏工作室</div>
         <div class="nav-links">
             <a href="#">首页</a>
             <a href="#" class="soon">作品｜未开发</a>
@@ -233,7 +247,6 @@
             </div>
         </div>
 
-        <!-- 新增：截图里的联系我们板块 -->
         <div class="section" id="contact">
             <h2>联系我们</h2>
             <p style="color:#b0c4de;margin-bottom:24px;">合作、建议，或只是想聊聊游戏，都欢迎来信。</p>
@@ -265,9 +278,11 @@
                         <span class="status-wait">筹备中</span>
                     </div>
                     <div class="social-item">
-                        <div class="social-name">
-                            <span>▶</span> 快手
-                        </div>
+                        <a target="_blank" href="https://www.kuaishou.com/profile/3xcumix8t9ud6ck">
+                            <div class="social-name">
+                                <span>▶</span> 快手
+                            </div>
+                        </a>
                         <span class="status-online">官方 · 已上线</span>
                     </div>
                 </div>
@@ -275,17 +290,35 @@
         </div>
     </div>
     <footer>
-        © 2026 小沈秋游戏工作室 | 站点建设中
+        © 2026 小沈秋游戏工作室 · 保留所有权利
+        <div class="footer-run-info" id="runTimer">本站已运行 <span id="runTime">42 天 23 时 08 分 38 秒</span> · 自工作室成立起持续运转，永远不停</div>
+        <div class="footer-view-count">网站浏览 0 次 · 感谢每一位来访的玩家</div>
     </footer>
 
     <script>
         // JS自动计算成立天数：成立日期 2026-09-18
         const startDate = new Date('2026-09-18');
         const now = new Date();
-        // 计算间隔天数
         const diffTime = Math.abs(now - startDate);
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
         document.getElementById('dayCount').innerText = diffDays;
+
+        // 网站运行计时器
+        function updateRunTime(){
+            const start = new Date("2026-09-18");
+            const current = new Date();
+            let ms = current - start;
+            const days = Math.floor(ms / (1000*60*60*24));
+            ms = ms % (1000*60*60*24);
+            const hours = Math.floor(ms / (1000*60*60));
+            ms = ms % (1000*60*60);
+            const minutes = Math.floor(ms / (1000*60));
+            ms = ms % (1000*60);
+            const seconds = Math.floor(ms / 1000);
+            document.getElementById("runTime").innerText = `${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
+        }
+        updateRunTime();
+        setInterval(updateRunTime,1000);
     </script>
 </body>
 </html>
