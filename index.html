@@ -88,10 +88,9 @@ function updateTime(){
 updateTime();
 setInterval(updateTime,1000);
 
-// 请求CF Worker后端获取PV访问量
 async function getPV(){
   try{
-    const res = await fetch(workerUrl);
+    const res = await fetch(workerUrl + "?t=" + Date.now(), { cache: "no-store" });
     const data = await res.json();
     document.getElementById("pv").innerText = data.pv;
   }catch(err){
